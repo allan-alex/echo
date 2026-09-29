@@ -1,0 +1,22 @@
+[package]
+name = "audio-capture"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+cpal = "0.15"
+hound = "3.5"
+anyhow = "1.0"
+ctrlc = "3.4"
+
+[[bin]]
+name = "list-devices"
+path = "src/list_devices.rs"
+
+[[bin]]
+name = "capture"
+path = "src/main.rs"
+
+[[bin]]
+name = "dual-capture"
+path = "src/dual_capture.rs"
