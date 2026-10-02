@@ -18,6 +18,9 @@ bot/vendor/*
 !bot/vendor/README.md
 
 /target
+/mic_speakers
+mic.wav
+system_audio.wav
 
 # RustRover
 #  JetBrains specific template is maintained in a separate JetBrains.gitignore that can
