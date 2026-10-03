@@ -128,11 +128,14 @@ fn main() -> anyhow::Result<()> {
     };
     let use_denoise = !args.iter().any(|a| a == "--no-denoise");
 
-    let stem = path.file_stem().and_then(|s| s.to_str()).unwrap_or("audio");
-    let out_dir = path.with_file_name(format!("{stem}_speakers"));
-    std::fs::create_dir_all(&out_dir)?;
+    // Anchored to the crate root so output lands in recordings/ regardless of the cwd.
+    let timestamp = chrono::Local::now().format("%Y-%m-%d_%H-%M-%S");
+    let out_dir = Path::new(env!("CARGO_MANIFEST_DIR"))
+        .join("recordings")
+        .join(format!("{timestamp}_speakers"));
 
     let (mut mono, mut sample_rate) = load_mono(path)?;
+    std::fs::create_dir_all(&out_dir)?;
     if use_denoise {
         mono = denoise(&resample(&mono, sample_rate, DENOISE_SAMPLE_RATE)?);
         sample_rate = DENOISE_SAMPLE_RATE;
