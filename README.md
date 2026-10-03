@@ -1,9 +1,12 @@
 # echo
 
-A meeting bot for summarizing and documenting ... for now.
+A program for extracting and processing audio ... for now.
 
 
-
+To install and build the libraries
+```
+cargo build
+```
 
 
 To record audio.
